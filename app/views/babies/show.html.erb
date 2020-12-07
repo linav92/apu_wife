@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @baby.name %>
+</p>
+<table class = "table table-striped">
+  <thead>
+    <strong>Veces que ha tomado pecho:</strong>
+  </thead>
+
+  <tbody>
+    <% @baby.breastfeedings.each do |h|%>
+    <tr>
+      <td><%= "Breastfeeding #{h.id}: " "tiempo: #{h.duracion} minutos, ""cantidad: #{h.cantidad} gramos"%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<table class ="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Bebido hoy (veces)</th>
+      <th>Última vez que bebió</th>
+      <th>Bebido hoy tiempo</th>
+      <th>Bebido hoy cantidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+      
+      <tr>
+      <td><%= @baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? 1 : 0)} %></td>
+      <td><%= @baby.breastfeedings.inject(Time.new(0)) { |max, h| (h.fecha.to_date > max ? h.fecha.to_date : max  )  }   %> </td>
+      <td><%= "#{@baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? h.duracion : 0)}} minutos"%></td>
+      <td><%= "#{@baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? h.cantidad : 0)}} gramos"%></td>
+      </tr>
+
+
+    
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_baby_path(@baby) %> |
+<%= link_to 'Back', babies_path %>

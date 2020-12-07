@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Babies</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @babies.each do |baby| %>
+      <tr>
+        
+        <td><%= baby.name %></td>
+        <td><%= link_to 'Show', baby %></td>
+        <td><%= link_to 'Edit', edit_baby_path(baby) %></td>
+        <td><%= link_to 'Destroy', baby, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= "Total tomado: #{baby.breastfeedings.inject(0){ |sum, history | sum + history.cantidad }}"%></td>
+      </tr>
+     
+
+      <!-- Vista de cuantas veces ha tomado el bebé-->
+          <% baby.breastfeedings.each do |history|%>
+          <tr>
+            <td><%= "Breastfeeding #{history.id}"%></td>
+           <!-- <td><%= "Veces tomado #{history.cantidad}"%></td> -->
+          </tr>
+          <%end%>
+        </ul>
+
+      </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Baby', new_baby_path %> | <%= link_to 'Breastfeedings', breastfeedings_path %>
+
+ 
