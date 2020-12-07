@@ -33,7 +33,7 @@
       
       <tr>
       <td><%= @baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? 1 : 0)} %></td>
-      <td><%= @baby.breastfeedings.inject(Time.new(0)) { |max, h| (h.fecha.to_date > max ? h.fecha.to_date : max  )  }   %> </td>
+      <td><%= @baby.breastfeedings.inject(Time.new(0)) { |max, h| (h.fecha.to_date > max ? h.fecha.to_date : max  )  }.strftime("%d de %B %Y")%> </td>
       <td><%= "#{@baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? h.duracion : 0)}} minutos"%></td>
       <td><%= "#{@baby.breastfeedings.inject(0){ |sum, h | sum + (h.fecha.to_date == Time.now.to_date ? h.cantidad : 0)}} gramos"%></td>
       </tr>

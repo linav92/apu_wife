@@ -18,7 +18,7 @@
       <tr>
         <td><%= "#{breastfeeding.cantidad} gramos" %></td>
         <td><%= "#{breastfeeding.duracion} minutos" %></td>
-        <td><%= breastfeeding.fecha %></td>
+        <td><%= breastfeeding.fecha.strftime("%d de %B %Y") %></td>
         <td><%= breastfeeding.baby.name %></td>
         <td><%= link_to 'Show', breastfeeding %></td>
         <td><%= link_to 'Edit', edit_breastfeeding_path(breastfeeding) %></td>

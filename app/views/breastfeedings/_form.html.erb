@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :cantidad %>
-    <%= form.number_field :cantidad %>
+  <div class="form-group">
+    <%= form.label :cantidad %> / Gramos
+    <%= form.number_field :cantidad, class: 'form-control'%>
   </div>
 
-  <div class="field">
-    <%= form.label :duracion %>
-    <%= form.number_field :duracion %> minutos
+  <div class="form-group">
+    <%= form.label :duracion %> / Minutos
+    <%= form.number_field :duracion, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :fecha %>
-    <%= form.date_select :fecha %>
+    <%= form.date_field :fecha, class: 'form-control'%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :baby_id %>
-    <%= form.select :baby_id, options_for_select(@babies)%>
+    <%= form.select :baby_id, options_for_select(@babies), {include_blank: true}, class: 'form-control'%>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Create Breastfeeding', class: 'btn btn-info'  %>
   </div>
 <% end %>
